@@ -1,0 +1,9 @@
+{
+	"name": "adflab5005",
+	"location": "southcentralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "69b68714-e360-48e1-a5b1-f641c10bd2e5",
+		"tenantId": "12eb616c-9191-49a0-acc9-664bc577c6a2"
+	}
+}
