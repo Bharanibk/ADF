@@ -27,7 +27,7 @@
 						"folderPath": "synapsews1/data/dw-staging"
 					},
 					"compute": {
-						"coreCount": 8,
+						"coreCount": 16,
 						"computeType": "General"
 					},
 					"traceLevel": "Fine"
