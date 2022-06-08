@@ -43,6 +43,9 @@
 				},
 				{
 					"name": "alterRow1"
+				},
+				{
+					"name": "select2"
 				}
 			],
 			"scriptLines": [
@@ -81,7 +84,15 @@
 				"          LowestRating = last(title),",
 				"          NumberOfMovies = count()) ~> aggregate1",
 				"aggregate1 alterRow(upsertIf(true())) ~> alterRow1",
-				"alterRow1 sink(allowSchemaDrift: true,",
+				"alterRow1 select(mapColumn(",
+				"          PrimaryGenre,",
+				"          year,",
+				"          HighestRating,",
+				"          LowestRating",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:false,",
