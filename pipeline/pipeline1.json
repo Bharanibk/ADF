@@ -8,7 +8,7 @@
 				"dependsOn": [],
 				"policy": {
 					"timeout": "1.00:00:00",
-					"retry": 0,
+					"retry": 3,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
@@ -27,7 +27,7 @@
 						"folderPath": "synapsews1/data/dw-staging"
 					},
 					"compute": {
-						"coreCount": 16,
+						"coreCount": 8,
 						"computeType": "General"
 					},
 					"traceLevel": "Fine"
