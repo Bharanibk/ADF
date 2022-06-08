@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adflab5005"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_servicePrincipalKey": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics2_connectionString": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics2_servicePrincipalKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://adlslab5005.dfs.core.windows.net"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_servicePrincipalId": {
+			"value": "75054167-4f5f-4215-ba98-fe94de9993f0"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_tenant": {
+			"value": "12eb616c-9191-49a0-acc9-664bc577c6a2"
+		},
+		"AzureSynapseAnalytics2_properties_typeProperties_servicePrincipalId": {
+			"value": "75054167-4f5f-4215-ba98-fe94de9993f0"
+		},
+		"AzureSynapseAnalytics2_properties_typeProperties_tenant": {
+			"value": "12eb616c-9191-49a0-acc9-664bc577c6a2"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
