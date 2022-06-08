@@ -24,7 +24,7 @@
 							"referenceName": "AzureDataLakeStorage1",
 							"type": "LinkedServiceReference"
 						},
-						"folderPath": "synapse/data/dw-staging"
+						"folderPath": "synapsews1/data/dw-staging"
 					},
 					"compute": {
 						"coreCount": 8,
