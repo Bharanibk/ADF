@@ -1,8 +1,8 @@
 {
-	"name": "DelimitedText1",
+	"name": "movies333",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "LSadls",
+			"referenceName": "adls5005",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "movies2.csv",
-				"folderPath": "movies/input",
+				"fileName": "movies333.csv",
+				"folderPath": "movies2",
 				"fileSystem": "raw"
 			},
 			"columnDelimiter": ",",
@@ -21,30 +21,37 @@
 		},
 		"schema": [
 			{
-				"name": "movie",
+				"name": "Film",
 				"type": "String"
 			},
 			{
-				"name": "title",
+				"name": "Genre",
 				"type": "String"
 			},
 			{
-				"name": "genres",
+				"name": "LeadStudio",
 				"type": "String"
 			},
 			{
-				"name": "year",
+				"name": "Audiencescore",
 				"type": "String"
 			},
 			{
-				"name": "Rating",
+				"name": "Profitability",
 				"type": "String"
 			},
 			{
-				"name": "Rotton Tomato",
+				"name": "RottenTomatoes",
+				"type": "String"
+			},
+			{
+				"name": "WorldwideGross",
+				"type": "String"
+			},
+			{
+				"name": "Year",
 				"type": "String"
 			}
 		]
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }
