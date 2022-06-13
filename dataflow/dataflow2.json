@@ -1,0 +1,67 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Film as string,",
+				"          Genre as string,",
+				"          LeadStudio as string,",
+				"          Audiencescore as string,",
+				"          Profitability as string,",
+				"          RottenTomatoes as string,",
+				"          WorldwideGross as string,",
+				"          Year as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     partitionBy('roundRobin', 4)) ~> source1",
+				"source1 derive(newgenre = reverse(Genre)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Film,",
+				"          Genre,",
+				"          LeadStudio,",
+				"          Audiencescore,",
+				"          Profitability,",
+				"          RottenTomatoes,",
+				"          WorldwideGross,",
+				"          Year,",
+				"          newgenre",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
