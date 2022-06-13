@@ -1,0 +1,54 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Movies33DS",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Film as string,",
+				"          Genre as string,",
+				"          LeadStudio as string,",
+				"          Audiencescore as string,",
+				"          Profitability as string,",
+				"          RottenTomatoes as string,",
+				"          WorldwideGross as string,",
+				"          Year as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     partitionBy('roundRobin', 3)) ~> source1",
+				"source1 select(mapColumn(",
+				"          Film,",
+				"          Genre,",
+				"          RottenTomatoes,",
+				"          Year",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 aggregate(groupBy(Film,",
+				"          Genre,",
+				"          Year),",
+				"     count = count()) ~> aggregate1"
+			]
+		}
+	}
+}
