@@ -10,15 +10,39 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "movies333",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "select1"
 				},
 				{
 					"name": "aggregate1"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "aggregate2"
+				},
+				{
+					"name": "union1"
 				}
 			],
 			"scriptLines": [
@@ -36,6 +60,20 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     partitionBy('roundRobin', 3)) ~> source1",
+				"source(output(",
+				"          Film as string,",
+				"          Genre as string,",
+				"          LeadStudio as string,",
+				"          Audiencescore as string,",
+				"          Profitability as string,",
+				"          RottenTomatoes as string,",
+				"          WorldwideGross as string,",
+				"          Year as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     partitionBy('roundRobin', 3)) ~> source2",
 				"source1 select(mapColumn(",
 				"          Film,",
 				"          Genre,",
@@ -47,7 +85,28 @@
 				"select1 aggregate(groupBy(Film,",
 				"          Genre,",
 				"          Year),",
-				"     count = count()) ~> aggregate1"
+				"     count = count()) ~> aggregate1",
+				"source2 select(mapColumn(",
+				"          Film,",
+				"          Genre,",
+				"          RottenTomatoes,",
+				"          Year",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select2 aggregate(groupBy(Film,",
+				"          Genre,",
+				"          Year),",
+				"     count = count()) ~> aggregate2",
+				"aggregate1, aggregate2 union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
