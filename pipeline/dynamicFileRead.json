@@ -142,7 +142,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(indexOf(variables('currentFilename'),'movies'),0)",
+									"value": "@greater(indexOf(toLower(variables('currentFilename')),'movies'),0)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -153,7 +153,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "outputFoldername",
-											"value": "'unknown'"
+											"value": "unknown"
 										}
 									}
 								],
@@ -165,7 +165,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "outputFoldername",
-											"value": "'Movies'"
+											"value": "movies"
 										}
 									}
 								]
@@ -185,7 +185,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(indexOf(variables('currentFilename'),'sales'),0)",
+									"value": "@greater(indexOf(toLower(variables('currentFilename')),'sales'),0)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -196,7 +196,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "outputFoldername",
-											"value": "'unknown'"
+											"value": "unknown"
 										}
 									}
 								],
@@ -208,7 +208,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "outputFoldername",
-											"value": "'sales'"
+											"value": "sales"
 										}
 									}
 								]
@@ -228,7 +228,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(indexOf(variables('currentFilename'),'customer'),0)",
+									"value": "@greater(indexOf(toLower(variables('currentFilename')),'customer'),0)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -239,7 +239,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "outputFoldername",
-											"value": "'unknown'"
+											"value": "unknown"
 										}
 									}
 								],
@@ -251,7 +251,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "outputFoldername",
-											"value": "'sales'"
+											"value": "customer"
 										}
 									}
 								]
