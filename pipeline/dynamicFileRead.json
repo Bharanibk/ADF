@@ -142,7 +142,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(indexOf(toLower(variables('currentFilename')),'movies'),0)",
+									"value": "@greater(indexOf(toLower(variables('currentFilename')),'movies'),-1)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -185,7 +185,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(indexOf(toLower(variables('currentFilename')),'sales'),0)",
+									"value": "@greater(indexOf(toLower(variables('currentFilename')),'sales'),-1)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
@@ -228,7 +228,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@greater(indexOf(toLower(variables('currentFilename')),'customer'),0)",
+									"value": "@greater(indexOf(toLower(variables('currentFilename')),'customer'),-1)",
 									"type": "Expression"
 								},
 								"ifFalseActivities": [
