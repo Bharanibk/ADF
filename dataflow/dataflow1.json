@@ -42,7 +42,28 @@
 					"name": "aggregate2"
 				},
 				{
-					"name": "union1"
+					"name": "union2"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "join2"
+				},
+				{
+					"name": "select3"
+				},
+				{
+					"name": "select4"
+				},
+				{
+					"name": "window1"
+				},
+				{
+					"name": "alterRow1"
+				},
+				{
+					"name": "select5"
 				}
 			],
 			"scriptLines": [
@@ -98,8 +119,59 @@
 				"          Genre,",
 				"          Year),",
 				"     count = count()) ~> aggregate2",
-				"aggregate1, aggregate2 union(byName: true)~> union1",
-				"union1 sink(allowSchemaDrift: true,",
+				"select2, select1 union(byName: true)~> union2",
+				"union2, aggregate1 join(union2@Film == aggregate1@Film",
+				"     && union2@Genre == aggregate1@Genre",
+				"     && union2@Year == aggregate1@Year,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"select4, aggregate2 join(select4@Film == aggregate2@Film",
+				"     && select4@Genre == aggregate2@Genre",
+				"     && select4@Year == aggregate2@Year,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join2",
+				"join2 select(mapColumn(",
+				"          Film = select4@Film,",
+				"          Genre = select4@Genre,",
+				"          RottenTomatoes,",
+				"          Year = select4@Year,",
+				"          count1 = select4@count,",
+				"          count2 = aggregate2@count",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select3",
+				"join1 select(mapColumn(",
+				"          Film = union2@Film,",
+				"          Genre = union2@Genre,",
+				"          RottenTomatoes,",
+				"          Year = union2@Year,",
+				"          count",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select4",
+				"select3 window(over(Film,",
+				"          Genre,",
+				"          Year),",
+				"     asc(Film, true),",
+				"     asc(Genre, true),",
+				"     rownum = rowNumber()) ~> window1",
+				"window1 alterRow(deleteIf(rownum>1)) ~> alterRow1",
+				"alterRow1 select(mapColumn(",
+				"          Film,",
+				"          Genre,",
+				"          RottenTomatoes,",
+				"          Year,",
+				"          count1,",
+				"          count2,",
+				"          rownum",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select5",
+				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
 				"     umask: 0022,",
