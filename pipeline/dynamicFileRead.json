@@ -330,7 +330,13 @@
 				"outputs": [
 					{
 						"referenceName": "DelimitedText3",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"DSOutputFolder": {
+								"value": "@variables('outputFoldername')",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
