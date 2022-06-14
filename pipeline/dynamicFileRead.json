@@ -262,12 +262,6 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "IsMovie",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
 									"activity": "IsSales",
 									"dependencyConditions": [
 										"Succeeded"
@@ -278,6 +272,12 @@
 									"dependencyConditions": [
 										"Succeeded",
 										"Failed"
+									]
+								},
+								{
+									"activity": "Tempset",
+									"dependencyConditions": [
+										"Succeeded"
 									]
 								}
 							],
@@ -338,6 +338,23 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "Tempset",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "IsMovie",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "currentNumberOfColumns",
+								"value": "5"
+							}
 						}
 					]
 				}
