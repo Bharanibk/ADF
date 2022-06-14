@@ -76,7 +76,8 @@
 								"fieldList": [
 									"itemName",
 									"lastModified",
-									"itemType"
+									"itemType",
+									"columnCount"
 								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
