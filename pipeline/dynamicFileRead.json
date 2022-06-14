@@ -129,13 +129,7 @@
 							}
 						},
 						{
-							"name": "Set variable2",
-							"type": "SetVariable",
-							"dependsOn": [],
-							"userProperties": []
-						},
-						{
-							"name": "If Condition1",
+							"name": "IsMovie",
 							"type": "IfCondition",
 							"dependsOn": [
 								{
@@ -150,7 +144,117 @@
 								"expression": {
 									"value": "@greater(indexOf(variables('currentFilename'),'movies'),0)",
 									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "Set variable4",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "outputFoldername",
+											"value": "'unknown'"
+										}
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "Set variable3",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "outputFoldername",
+											"value": "'Movies'"
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "IsSales",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "setFilename",
+									"dependencyConditions": [
+										"Succeeded"
+									]
 								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@greater(indexOf(variables('currentFilename'),'sales'),0)",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "Set variable6",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "outputFoldername",
+											"value": "'unknown'"
+										}
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "Set variable5",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "outputFoldername",
+											"value": "'sales'"
+										}
+									}
+								]
+							}
+						},
+						{
+							"name": "IsCustomer",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "setFilename",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@greater(indexOf(variables('currentFilename'),'customer'),0)",
+									"type": "Expression"
+								},
+								"ifFalseActivities": [
+									{
+										"name": "Set variable6_copy1",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "outputFoldername",
+											"value": "'unknown'"
+										}
+									}
+								],
+								"ifTrueActivities": [
+									{
+										"name": "Set variable5_copy1",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "outputFoldername",
+											"value": "'sales'"
+										}
+									}
+								]
 							}
 						}
 					]
