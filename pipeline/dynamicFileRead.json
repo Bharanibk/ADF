@@ -262,19 +262,6 @@
 							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "IsSales",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								},
-								{
-									"activity": "IsCustomer",
-									"dependencyConditions": [
-										"Succeeded",
-										"Failed"
-									]
-								},
-								{
 									"activity": "Tempset",
 									"dependencyConditions": [
 										"Succeeded"
