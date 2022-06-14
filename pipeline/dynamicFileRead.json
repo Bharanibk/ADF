@@ -147,13 +147,13 @@
 								},
 								"ifFalseActivities": [
 									{
-										"name": "Set variable4",
-										"type": "SetVariable",
+										"name": "Fail1",
+										"type": "Fail",
 										"dependsOn": [],
 										"userProperties": [],
 										"typeProperties": {
-											"variableName": "outputFoldername",
-											"value": "unknown"
+											"message": "notmovie",
+											"errorCode": "1"
 										}
 									}
 								],
@@ -176,9 +176,9 @@
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "setFilename",
+									"activity": "IsMovie",
 									"dependencyConditions": [
-										"Succeeded"
+										"Failed"
 									]
 								}
 							],
@@ -190,13 +190,13 @@
 								},
 								"ifFalseActivities": [
 									{
-										"name": "Set variable6",
-										"type": "SetVariable",
+										"name": "Fail2",
+										"type": "Fail",
 										"dependsOn": [],
 										"userProperties": [],
 										"typeProperties": {
-											"variableName": "outputFoldername",
-											"value": "unknown"
+											"message": "notsales",
+											"errorCode": "2"
 										}
 									}
 								],
@@ -219,9 +219,9 @@
 							"type": "IfCondition",
 							"dependsOn": [
 								{
-									"activity": "setFilename",
+									"activity": "IsSales",
 									"dependencyConditions": [
-										"Succeeded"
+										"Failed"
 									]
 								}
 							],
