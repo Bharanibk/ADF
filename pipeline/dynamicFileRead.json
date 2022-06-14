@@ -87,11 +87,65 @@
 									"type": "DelimitedTextReadSettings"
 								}
 							}
+						},
+						{
+							"name": "setFilename",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Get Metadata2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "currentFilename",
+								"value": {
+									"value": "@activity('Get Metadata2').output.itemName",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Get Metadata2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "currentFiletype",
+								"value": {
+									"value": "@activity('Get Metadata2').output.itemType",
+									"type": "Expression"
+								}
+							}
 						}
 					]
 				}
 			}
 		],
+		"variables": {
+			"currentFilename": {
+				"type": "String"
+			},
+			"currentFiletype": {
+				"type": "String"
+			},
+			"currentLastmodifieddate": {
+				"type": "String"
+			},
+			"currentNumberOfColumns": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
