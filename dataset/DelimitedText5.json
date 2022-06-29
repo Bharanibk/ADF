@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": {
-					"value": "@concat('/employee/', formatDateTime(dataset().date, 'yyyy'))",
+					"value": "@concat('/employee2/', formatDateTime(dataset().date, 'yyyy')\n,'/',formatDateTime(dataset().date, 'MM')\n,'/',formatDateTime(dataset().date, 'dd')\n)",
 					"type": "Expression"
 				},
 				"fileSystem": "input"
