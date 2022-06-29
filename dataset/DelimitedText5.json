@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"ds_path": {
+			"date": {
 				"type": "string"
 			}
 		},
@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"folderPath": {
-					"value": "@'employee/' + dataset().ds_path",
+					"value": "@concat('/employee/', formatDateTime(dataset().date, 'yyyy'))",
 					"type": "Expression"
 				},
 				"fileSystem": "input"
